@@ -2,7 +2,7 @@
 # Handles both the PHP/Composer side and the npm/Vite asset build.
 
 [phases.setup]
-nixPkgs = ["nodejs_20"]
+nixPkgs = ["nodejs_20", "php83", "php83Packages.composer"]
 
 [phases.install]
 cmds = [
