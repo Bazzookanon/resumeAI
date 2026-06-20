@@ -12,6 +12,12 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        // Railway (and most PaaS hosts) terminate TLS at their edge proxy and forward
+        // requests over plain HTTP. Trust that proxy's X-Forwarded-* headers so Laravel
+        // knows the original request was HTTPS — otherwise it generates http:// URLs
+        // for assets, which browsers block as mixed content on an https:// page.
+        $middleware->trustProxies(at: '*');
+
         $middleware->alias([
             'track.activity' => \App\Http\Middleware\TrackUserActivity::class,
             'admin' => \App\Http\Middleware\EnsureUserIsAdmin::class,
