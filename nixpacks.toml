@@ -1,8 +1,8 @@
 # Build configuration for Railway's Nixpacks builder.
 # Handles both the PHP/Composer side and the npm/Vite asset build.
 
-[phases.setup]
-nixPkgs = ["nodejs_22"]
+[variables]
+NIXPACKS_NODE_VERSION = "22"
 
 [phases.install]
 cmds = [
