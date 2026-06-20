@@ -1,6 +1,9 @@
 # Build configuration for Railway's Nixpacks builder.
 # Handles both the PHP/Composer side and the npm/Vite asset build.
 
+[phases.setup]
+nixPkgs = ["nodejs_20"]
+
 [phases.install]
 cmds = [
     "composer install --no-dev --optimize-autoloader --no-interaction",
